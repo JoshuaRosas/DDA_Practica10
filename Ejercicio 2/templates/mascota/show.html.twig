@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mascota{% endblock %}
+
+{% block body %}
+    <h1>Mascota</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mascotum.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ mascotum.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Propietario</th>
+                <td>{{ mascotum.propietario }}</td>
+            </tr>
+            <tr>
+                <th>Especie</th>
+                <td>{{ mascotum.especie }}</td>
+            </tr>
+            <tr>
+                <th>Raza</th>
+                <td>{{ mascotum.raza }}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ mascotum.sexo }}</td>
+            </tr>
+            <tr>
+                <th>FechaNacimiento</th>
+                <td>{{ mascotum.fechaNacimiento ? mascotum.fechaNacimiento|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>FechaMuerte</th>
+                <td>{{ mascotum.fechaMuerte ? mascotum.fechaMuerte|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('mascota_index') }}">back to list</a>
+
+    <a href="{{ path('mascota_edit', {'id': mascotum.id}) }}">edit</a>
+
+    {{ include('mascota/_delete_form.html.twig') }}
+{% endblock %}

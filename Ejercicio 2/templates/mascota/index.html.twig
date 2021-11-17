@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mascota index{% endblock %}
+
+{% block body %}
+    <h1>Mascota index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Propietario</th>
+                <th>Especie</th>
+                <th>Raza</th>
+                <th>Sexo</th>
+                <th>FechaNacimiento</th>
+                <th>FechaMuerte</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mascotum in mascotas %}
+            <tr>
+                <td>{{ mascotum.id }}</td>
+                <td>{{ mascotum.nombre }}</td>
+                <td>{{ mascotum.propietario }}</td>
+                <td>{{ mascotum.especie }}</td>
+                <td>{{ mascotum.raza }}</td>
+                <td>{{ mascotum.sexo }}</td>
+                <td>{{ mascotum.fechaNacimiento ? mascotum.fechaNacimiento|date('Y-m-d') : '' }}</td>
+                <td>{{ mascotum.fechaMuerte ? mascotum.fechaMuerte|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('mascota_show', {'id': mascotum.id}) }}">show</a>
+                    <a href="{{ path('mascota_edit', {'id': mascotum.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('mascota_new') }}">Create new</a>
+{% endblock %}
